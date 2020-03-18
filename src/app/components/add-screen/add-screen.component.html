@@ -1,0 +1,61 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header class="header">
+            <mat-card-title>Add Employee</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div>
+                <form>
+                  <mat-form-field class="inputs">
+                    <mat-label>Name</mat-label>
+                    <input matInput [formControl]="NameFormControl" [errorStateMatcher]="matcher"
+                        placeholder="Employee Name">
+                    <mat-error *ngIf="NameFormControl.hasError('minLength()') && !NameFormControl.hasError('required')">
+                    The Name has to be atleast of 3 charecters
+                    </mat-error>
+                    <mat-error *ngIf="NameFormControl.hasError('required')">
+                    Name is <strong>required</strong>
+                    </mat-error>
+                    </mat-form-field>
+                    <mat-form-field  class="inputs">
+                        <mat-label>Salary</mat-label>
+                        <input matInput [formControl]="salaryFormControl" [errorStateMatcher]="matcher"
+                            placeholder="Salary">
+                        <mat-error *ngIf="salaryFormControl.hasError('required')">
+                        Salary is <strong>required</strong>
+                        </mat-error>
+                 </mat-form-field>
+                </form>
+            </div>
+            <div class="profile">
+                <label > Upload ProfilePic: </label>
+                <input (change)="onImagePicked($event)" placeholder="Upload Image" 
+                type="file" />
+                <button (click)="onImageUpload()"  mat-raised-button>Upload Image</button>
+                  <div *ngIf="message" class="warning"><p>{{uploadMessage}}</p></div> 
+             </div>
+             <div class="skill">
+                <label>Skill Set : </label>
+                <span *ngFor="let item of checkBox; let i = index">
+                    <mat-checkbox [(ngModel)]="checkBox[i].checked"><strong>Skill</strong> {{i}}</mat-checkbox>
+                </span>  
+             </div>
+                
+   <div class="profile">
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker1"  [min]="minDate" [max]="maxDate" placeholder="Date of Birth" [formControl]="date">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>   
+  </div>  
+  <div *ngIf=error>
+     <p class="warning"> *All the fields are mandatory</p>
+  </div>
+        </mat-card-content>
+        <mat-card-actions class="button">
+            <button (click)="saveEmployee()" mat-button>Save</button>
+            <button (click)="cancel()" mat-button>Cancel</button>
+        </mat-card-actions>     
+    </mat-card>
+</div>
+

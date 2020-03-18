@@ -1,0 +1,38 @@
+.form-elements{
+    display: inline-block;
+  }
+  
+  .container{
+      width: 100%; 
+      text-align: center;
+      margin-bottom: 110px;
+  }
+  
+  .navbar{
+      padding: 16px;
+  }
+  .navbar-header img{
+      padding: 8px;
+      line-height: 18px;
+      margin-bottom: 10px;
+  }
+  ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      margin-right: 100px;
+    }
+  li {
+      float: left; 
+  }
+  
+ .element{
+     left:25%;
+     margin:10px;
+ }
+  
+ .block{
+     right: 0;
+     position: absolute;
+ }

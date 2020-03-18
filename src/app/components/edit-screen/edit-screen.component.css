@@ -1,0 +1,18 @@
+.inputs{
+    margin:20px;
+}
+
+.skill{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top:30px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+.warning{
+    color:red;
+}
+.profile{
+    margin-left: 20px;
+}

@@ -1,0 +1,5 @@
+<div  role="group">
+    <button mat-button [disabled]="!canMoveToPreviousPage" (click)="moveToPreviousPage()">Prev</button>
+    <button  disabled mat-button>{{pageIndex + 1}} / {{_pageCount}}</button>
+    <button mat-button [disabled]="!canMoveToNextPage" (click)="moveToNextPage()">Next</button>
+  </div>

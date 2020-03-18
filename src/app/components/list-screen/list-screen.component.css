@@ -1,0 +1,71 @@
+.mainContainer{
+    position:fixed;
+    width: 60%;
+    border: 1px solid grey;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+     /*set to a negative number 1/2 of your height*/
+    
+}
+.card-header{
+    width:100%;
+    height: 50px;
+   
+}
+
+.head{
+    font-size: 2em;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.container{
+    width: 90%;
+    height: 10% ;
+    margin:20px;
+    background-color : #E0E0E0;
+}
+
+.values{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.button{
+    margin-left:20px;
+    margin-right: 20px;
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+   
+}
+
+.noContent{
+    margin:3%;
+}
+
+.image{
+    flex:1;
+}
+
+.details{
+    flex:2;
+    flex-direction: column;
+    margin:20px;
+}
+.header{
+    background-color: grey;
+}
+
+.detailsNrml{
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;  
+}
+
+.elements{
+    justify-content: space-between;
+}
