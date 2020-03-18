@@ -9,6 +9,7 @@ import { Router} from '@angular/router';
 export class EmployeeService {
   base_url = "http://localhost:3000/api/"
   editDetails;
+  searchValue;
    
   constructor(private http:HttpClient,private router:Router) { }
   getAllEmployees(){
@@ -24,17 +25,17 @@ export class EmployeeService {
   }
 
   updateEmployee(value){
-    console.log(value)
-    return this.http.post(this.base_url+"updateEmployee",value);
+    return this.http.put(this.base_url+"updateEmployee",value);
   }
 
   deleteEmployee(value){
-     return this.http.post(this.base_url+"deleteEmployee",value)
+     return this.http.delete(this.base_url+"deleteEmployee/"+value.Id)
   }
 
   searchEmployees(data){
     return this.http.post(this.base_url+"searchemployees",data)
   }
+  
 
   editClick(data){
     this.editDetails = data;
