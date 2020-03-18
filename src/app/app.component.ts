@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {EmployeeService} from "./services/employee.service";
-import { FormBuilder } from '@angular/forms';
 import { Router} from '@angular/router';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
 
 @Component({
@@ -10,16 +10,9 @@ import { Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  searchUserName:String;
-  searchForm = this.fb.group({
-    Name:['']
-  });
-
-  constructor(private employee:EmployeeService,private fb: FormBuilder,
-    private router:Router){}
-
-    onSubmit(){
-      this.searchUserName = this.searchForm.value;
-      this.searchForm.reset();
+  
+  constructor(private employeeService:EmployeeService,private router:Router){}
+    add(){
+      this.router.navigate(["/add-employee"])
     }
 }
