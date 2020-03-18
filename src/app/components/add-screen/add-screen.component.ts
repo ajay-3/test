@@ -21,12 +21,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class AddScreenComponent implements OnInit {
   minDate:Date;
   maxDate:Date;
+  uploadError=true;
     error = false;
     message = false;
     employee={};
     imageObj:File;
     uploadMessage;
     datePicker:string;
+    errorMessage;
     NameFormControl = new FormControl('', [
       Validators.required,
       Validators.minLength(3),
@@ -69,11 +71,14 @@ export class AddScreenComponent implements OnInit {
       imageForm.append('image', this.imageObj);
       this.imageUploadService.imageUpload(imageForm).subscribe(res => {
         if(res == null){
+          this.uploadError = true; 
           this.uploadMessage = "Did you select the image";
         }else if(res == "HTTP error"){
+            this.uploadError = true; 
             this.uploadMessage = "Server Problem"
         }
         else{
+     this.uploadError=false;
      this.uploadMessage = "Post has been successfully uploaded"
      this.employee["imageUrl"] =  res['imageUrl']; 
       }});
@@ -100,11 +105,17 @@ export class AddScreenComponent implements OnInit {
       this.employee["Skills"] = this.skills;
       this.employee["DOB"] = formattedDate;
       console.log(this.employee)
-      if(this.NameFormControl.value && this.salaryFormControl && this.employee["imageUrl"]!="undefined" && this.skills.length>0 &&formattedDate){
-      this.employeeService.addEmployee(this.employee).subscribe((res)=>{console.log(res)});
-      this.router.navigate([""]);
-      }else{
+      if(this.NameFormControl.value && this.salaryFormControl && !this.uploadError && this.skills.length>0 &&formattedDate){
+      this.employeeService.addEmployee(this.employee).subscribe((res)=>{
+        this.employeeService.getAllEmployees().subscribe((data)=>{console.log(data)})
+        this.router.navigate([""]);
+      });
+      }else if(!this.uploadError){
+      this.errorMessage = "The pic is uploading or there might be some issue"
       this.error =true;
+      }else{
+      this.error = true;
+      this.errorMessage = "All the fields are mandatory"
       }
 
     }
