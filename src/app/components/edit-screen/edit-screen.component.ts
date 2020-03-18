@@ -54,11 +54,14 @@ export class EditScreenComponent implements OnInit {
   
   ngOnInit() {
       this.employee = this.employeeService.geteditClick();
+      console.log(this.employee)
       for(let i=0;i<this.employee.Skills.length;i++){
         this.checkBox[this.employee.Skills[i].id].checked = true;
       }
       this.NameFormControl.setValue( this.employee["Name"] );
       this.salaryFormControl.setValue(this.employee["Salary"]);
+      this.updated["ImageUrl"] = this.employee["ImageUrl"];
+      this.updated["Id"] = this.employee["Id"];
     }
 
   onImagePicked(event: Event): void {
@@ -91,12 +94,14 @@ export class EditScreenComponent implements OnInit {
     }
     const momentDate = new Date(this.date.value); // Replace event.value with your date value
     const formattedDate = moment(momentDate).format("YYYY/MM/DD");
-    this.updated["Name"] =this.NameFormControl.value || this.employee["Name"];
+    this.updated["Name"] =this.NameFormControl.value;
     this.updated["Salary"] =this.salaryFormControl.value;
     this.updated["Skills"] = this.skills;
     this.updated["DOB"] = formattedDate || this.employee["DOB"];
-    this.updated["imageUrl"] = this.Url || this.employee["imageUrl"]
-    this.employeeService.addEmployee(this.updated).subscribe((res)=>{console.log(res)});
+    if(this.Url){
+      this.updated["ImageUrl"] = this.Url;
+    }
+    this.employeeService.updateEmployee(this.updated).subscribe((res)=>{console.log(res)});
     this.router.navigate([""]);
   }
 
